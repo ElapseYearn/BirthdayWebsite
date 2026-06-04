@@ -373,7 +373,7 @@ const NPC_DATA = [
 const INTRO_PH = { BLACK: 0, TITLE: 1, NARRATIVE: 2, PROMPT: 3 };
 
 const NARRATIVE_LINES = [
-    '6月3日。',
+    '6月6日。',
     '你睁开了眼睛。',
     '周围的一切...',
     '都失去了颜色。'
