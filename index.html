@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>张进的冒险</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game-wrapper">
+<div id="game-container">
+    <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+    <div id="intro-overlay" class="overlay hidden">
+        <div id="intro-content">
+            <div id="intro-text"></div>
+            <div id="intro-prompt">[ 按 空格键 继续 ]</div>
+        </div>
+    </div>
+
+    <div id="dialog-box" class="hidden">
+        <div id="dialog-speaker-name"></div>
+        <div id="dialog-text-area"></div>
+        <div id="dialog-next-hint">▼</div>
+    </div>
+
+    <div id="hud" class="hidden">
+        <div id="shard-count">🌟 记忆碎片: 0 / 5</div>
+        <div id="move-hint">↑↓←→ / WASD</div>
+    </div>
+
+    <div id="ending-overlay" class="overlay hidden">
+        <canvas id="particleCanvas" width="800" height="600"></canvas>
+        <div id="ending-text-wrap">
+            <h1 id="birthday-title">🎂 张进，生日快乐！🎂</h1>
+            <div id="birthday-message"></div>
+        </div>
+    </div>
+
+    <div id="all-collected-msg" class="hidden">
+        所有的碎片已经集齐...<br>通往真相的路出现了！
+    </div>
+</div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
