@@ -765,7 +765,9 @@ document.addEventListener('keyup', e => { S.keys[e.code] = false; });
 document.getElementById('dialog-box').addEventListener('click', handleConfirm);
 
 document.getElementById('gameCanvas').addEventListener('click', e => {
-    if (S.state === 'INTRO' && introPhase === INTRO_PH.PROMPT) {
+    if (S.state === 'DIALOG') {
+        handleConfirm();
+    } else if (S.state === 'INTRO' && introPhase === INTRO_PH.PROMPT) {
         handleConfirm();
     } else if (S.state === 'PLAYING') {
         const rect = S.canvas.getBoundingClientRect();
