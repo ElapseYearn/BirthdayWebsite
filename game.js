@@ -762,11 +762,12 @@ document.addEventListener('keydown', e => {
 
 document.addEventListener('keyup', e => { S.keys[e.code] = false; });
 
-document.getElementById('intro-overlay').addEventListener('click', handleConfirm);
 document.getElementById('dialog-box').addEventListener('click', handleConfirm);
 
 document.getElementById('gameCanvas').addEventListener('click', e => {
-    if (S.state === 'PLAYING') {
+    if (S.state === 'INTRO' && introPhase === INTRO_PH.PROMPT) {
+        handleConfirm();
+    } else if (S.state === 'PLAYING') {
         const rect = S.canvas.getBoundingClientRect();
         const scaleX = S.canvas.width / rect.width;
         const scaleY = S.canvas.height / rect.height;
@@ -780,6 +781,8 @@ document.getElementById('gameCanvas').addEventListener('click', e => {
                 return;
             }
         }
+        // click anywhere to try interact if near an NPC
+        tryInteract();
     }
 });
 
