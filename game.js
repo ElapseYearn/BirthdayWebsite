@@ -739,27 +739,49 @@ function isBlocked(x, y) {
 // ==============================
 // INPUT
 // ==============================
+function handleConfirm() {
+    if (S.state === 'INTRO' && introPhase === INTRO_PH.PROMPT) {
+        document.getElementById('hud').classList.remove('hidden');
+        S.state = 'PLAYING';
+        Audio.startBGM(false);
+    } else if (S.state === 'DIALOG') {
+        advanceDialog();
+    }
+}
+
 document.addEventListener('keydown', e => {
     S.keys[e.code] = true;
     Audio.resume();
     if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'KeyW', 'KeyA', 'KeyS', 'KeyD', 'Enter'].includes(e.code)) {
         e.preventDefault();
     }
-
-    if (S.state === 'INTRO') {
-        if ((e.code === 'Space' || e.code === 'Enter') && introPhase === INTRO_PH.PROMPT) {
-            document.getElementById('hud').classList.remove('hidden');
-            S.state = 'PLAYING';
-            Audio.startBGM(false);
-        }
-    } else if (S.state === 'DIALOG') {
-        if (e.code === 'Space' || e.code === 'Enter') {
-            advanceDialog();
-        }
+    if (e.code === 'Space' || e.code === 'Enter') {
+        handleConfirm();
     }
 });
 
 document.addEventListener('keyup', e => { S.keys[e.code] = false; });
+
+document.getElementById('intro-overlay').addEventListener('click', handleConfirm);
+document.getElementById('dialog-box').addEventListener('click', handleConfirm);
+
+document.getElementById('gameCanvas').addEventListener('click', e => {
+    if (S.state === 'PLAYING') {
+        const rect = S.canvas.getBoundingClientRect();
+        const scaleX = S.canvas.width / rect.width;
+        const scaleY = S.canvas.height / rect.height;
+        const mx = (e.clientX - rect.left) * scaleX;
+        const my = (e.clientY - rect.top) * scaleY;
+        for (const npc of S.npcs) {
+            const nx = (npc.x * TILE_SIZE + 16) - S.camera.x;
+            const ny = (npc.y * TILE_SIZE + 16) - S.camera.y;
+            if (Math.abs(mx - nx) < 44 && Math.abs(my - ny) < 44) {
+                interactNpc(npc);
+                return;
+            }
+        }
+    }
+});
 
 // (intro system above - no old variables/functions here)
 
