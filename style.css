@@ -9,25 +9,33 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    min-height:100dvh;
     font-family:'ZCOOL QingKe HuangYou','Microsoft YaHei',sans-serif;
     overflow:hidden;
-    user-select:none
+    user-select:none;
+    touch-action:none;
+    -webkit-touch-callout:none
 }
 #game-wrapper{
     position:relative;
-    width:95vw;
-    max-width:1600px;
-    height:92vh;
-    max-height:900px;
+    width:100vw;
+    height:100dvh;
     display:flex;
     justify-content:center;
-    align-items:center
+    align-items:center;
+    background:#0a0a0a;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(20,20,30,0.3) 2px, rgba(20,20,30,0.3) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(20,20,30,0.3) 2px, rgba(20,20,30,0.3) 4px),
+        radial-gradient(ellipse at 20% 30%, rgba(30,20,50,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(20,30,50,0.15) 0%, transparent 50%)
 }
 #game-container{
     position:relative;
     width:100%;
+    max-width:calc(100vh * 16 / 9);
     height:100%;
+    max-height:calc(100vw * 9 / 16);
     border:3px solid #2a2a3a;
     box-shadow:0 0 80px rgba(0,0,0,.9), inset 0 0 60px rgba(0,0,0,.3);
     background:#1a1a2e;
